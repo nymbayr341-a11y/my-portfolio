@@ -6,126 +6,118 @@
   <title>Нямбаяр | ПХ322</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    :root { --primary: #2563eb; --dark: #1e2937; --gray: #64748b; }
+    :root {
+      --primary: #4f46e5;
+      --dark: #1e2937;
+    }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
-      color: var(--dark);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
+      color: #e2e8f0;
       line-height: 1.7;
-      scroll-behavior: smooth;
     }
+
     header {
-      background: rgba(255,255,255,0.95);
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(16px);
       position: fixed;
       width: 100%;
       z-index: 1000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     nav {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 1rem 2rem;
+      padding: 1.3rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .logo { font-size: 1.8rem; font-weight: bold; color: var(--primary); }
-
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      position: relative;
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #a5b4fc, #c4d0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .nav-links a:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background: var(--primary);
-      transition: 0.3s;
-    }
-    .nav-links a:hover:after { width: 100%; }
 
     .hero {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding-top: 80px;
+      padding: 120px 20px 80px;
     }
     .profile-img {
-      width: 260px; height: 260px;
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
-      border: 10px solid white;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-      margin-bottom: 2rem;
+      border: 12px solid rgba(255,255,255,0.2);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+      margin-bottom: 40px;
+      transition: 0.6s;
     }
-    h1 { font-size: 3.5rem; }
-    .subtitle { font-size: 1.6rem; color: var(--gray); }
+    .profile-img:hover { transform: scale(1.1) rotate(8deg); }
 
-    section { padding: 110px 0; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    .section-title { 
-      text-align: center; 
-      font-size: 2.8rem; 
-      margin-bottom: 3rem; 
-      color: var(--primary); 
+    h1 { font-size: 4rem; margin-bottom: 1rem; background: linear-gradient(90deg, #e0e7ff, #c4d0ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { font-size: 1.8rem; color: #a5b4fc; }
+
+    section { padding: 130px 0; }
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 30px; }
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 4rem;
+      background: linear-gradient(90deg, #a5b4fc, #e0e7ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .skills-grid {
+    .card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 28px;
+      transition: all 0.5s ease;
+    }
+    .card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(79,70,229,0.3);
+    }
+
+    .skills-grid, .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
     }
-    .skill-item {
-      background: white;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    }
-    .skill-name {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
+
     .progress-bar {
-      height: 14px;
-      background: #e2e8f0;
-      border-radius: 10px;
+      height: 16px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
       overflow: hidden;
+      margin-top: 10px;
     }
     .progress {
       height: 100%;
-      background: linear-gradient(90deg, #2563eb, #60a5fa);
-      border-radius: 10px;
-      width: 0%;
-      transition: width 2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .social-icons a {
-      font-size: 3rem;
-      margin: 0 20px;
-      color: var(--gray);
-      transition: 0.3s;
-    }
-    .social-icons a:hover {
-      color: var(--primary);
-      transform: scale(1.2);
+      background: linear-gradient(90deg, #6366f1, #a5b4fc);
+      border-radius: 20px;
+      transition: width 2s ease;
     }
 
     .admin-btn {
-      position: fixed; bottom: 30px; right: 30px;
-      background: var(--primary); color: white;
-      padding: 15px 25px; border-radius: 50px;
-      text-decoration: none; font-weight: bold;
-      box-shadow: 0 8px 25px rgba(37,99,235,0.4);
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background: linear-gradient(45deg, #4f46e5, #6366f1);
+      color: white;
+      padding: 16px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 15px 35px rgba(79,70,229,0.5);
       z-index: 999;
     }
   </style>
@@ -135,118 +127,124 @@
   <header>
     <nav>
       <div class="logo">Нямбаяр</div>
-      <div class="nav-links">
-        <a href="#home">Нүүр</a>
-        <a href="#about">Миний тухай</a>
-        <a href="#skills">Ур чадвар</a>
-        <a href="#projects">Төслүүд</a>
-        <a href="#contact">Холбоо</a>
+      <div>
+        <a href="#home" style="color:#e0e7ff; margin:0 12px; text-decoration:none;">Нүүр</a>
+        <a href="#about" style="color:#e0e7ff; margin:0 12px; text-decoration:none;">Миний тухай</a>
+        <a href="#skills" style="color:#e0e7ff; margin:0 12px; text-decoration:none;">Ур чадвар</a>
+        <a href="#projects" style="color:#e0e7ff; margin:0 12px; text-decoration:none;">Төслүүд</a>
+        <a href="#contact" style="color:#e0e7ff; margin:0 12px; text-decoration:none;">Холбоо</a>
       </div>
     </nav>
   </header>
 
   <section id="home" class="hero">
     <div class="container">
-      <a href="https://ibb.co/twVt9c1k"><img src="https://i.ibb.co/zWqYzbtj/475795033-1977225439428416-4396556336831301911-n.jpg" alt="475795033-1977225439428416-4396556336831301911-n" border="0"></a>
-      <p class="subtitle">ПХ322 • Web & Mobile Developer</p>
+      <a href="https://ibb.co/39wM3pKy"><img src="https://i.ibb.co/21ws9vJ7/475795033-1977225439428416-4396556336831301911-n.jpg" alt="475795033-1977225439428416-4396556336831301911-n" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>bbcode thumbnail linked image</a><br />
+      <h1>Сайн уу, намайг Нямбаяр гэдэг</h1>
+      <p class="subtitle">ПХ322 дугаар бүлгийн оюутан</p>
     </div>
   </section>
 
   <section id="about">
     <div class="container">
       <h2 class="section-title">Миний тухай</h2>
-      <p style="font-size:1.3rem; text-align:center; max-width:800px; margin:0 auto;">
+      <p id="aboutText" style="font-size:1.35rem; text-align:center; max-width:800px; margin:0 auto; color:#cbd5e1;">
         ИЗИС-ийн Программ Хангамжийн 322-р бүлгийн оюутан. HTML, CSS, JavaScript, Figma, Flutter ашиглан төсөл хийх зорилготой. Одоогийн байдлаар 3-р курст суралцаж дуусаад төгсөх гэж байгаа бөгөөд энэ сэмистер Хиймэл оюун ухаан, Oracle database, Веб технологи хичээлүүддээ илүү анхааран суралцахыг зорисон. Чөлөөт цагаараа кино контент үзэх, подкаст сонсох, спортоор хичээллэх болон тоглоом тоглох дуртай. Энэхүү веб сайт нь миний анхны олон нийтэд хүргэж буй сайт бөгөөд цаашдаа улам хичээх болноо.
       </p>
     </div>
   </section>
 
-  <section id="skills" style="background:white;">
+  <section id="skills" style="background:rgba(255,255,255,0.05);">
     <div class="container">
       <h2 class="section-title">Ур чадварууд</h2>
-      <div class="skills-grid">
-        <div class="skill-item">
-          <div class="skill-name"><span>HTML5</span><span>87%</span></div>
-          <div class="progress-bar"><div class="progress" data-width="87"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>CSS3</span><span>80%</span></div>
-          <div class="progress-bar"><div class="progress" data-width="80"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>JavaScript</span><span>78%</span></div>
-          <div class="progress-bar"><div class="progress" data-width="78"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Figma</span><span>70%</span></div>
-          <div class="progress-bar"><div class="progress" data-width="70"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Flutter</span><span>77%</span></div>
-          <div class="progress-bar"><div class="progress" data-width="77"></div></div>
-        </div>
-      </div>
+      <div class="skills-grid" id="skillsContainer"></div>
     </div>
   </section>
 
-  <section id="projects">
+  <section id="projects" style="background:rgba(255,255,255,0.05);">
     <div class="container">
       <h2 class="section-title">Төслүүд</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
-        <div class="skill-item"><h3> Вэбсайт</h3><p>Энэ сайт</p></div>
-        <div class="skill-item"><h3>Flutter Мобайл Аппууд</h3><p>ИЗИС сургуулийн web applictaion</p></div>
-      </div>
+      <div class="projects-grid" id="projectsContainer"></div>
     </div>
   </section>
 
-  <section id="contact" style="background:white;">
+  <section id="contact">
     <div class="container">
       <h2 class="section-title">Холбоо барих</h2>
-      <div style="text-align:center; margin-top: 2rem;">
-        <p style="font-size:1.3rem; margin-bottom: 2rem;">
-          <strong>Email:</strong> <a href="mailto:nymbayr341@gmail.com">nymbayr341@gmail.com</a>
+      <div style="text-align:center; margin-top: 3rem;">
+        <p style="font-size:1.4rem;">
+          <strong>Email:</strong> <a href="mailto:nymbayr341@gmail.com" style="color:#a5b4fc;">nymbayr341@gmail.com</a>
         </p>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/raindrop._.w" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.facebook.com/rnbw4" target="_blank"><i class="fab fa-facebook"></i></a>
+        <div style="margin-top: 30px;">
+          <a href="https://www.instagram.com/raindrop._.w" target="_blank" style="font-size:3.5rem; margin:0 25px; color:#a5b4fc;"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/rnbw4" target="_blank" style="font-size:3.5rem; margin:0 25px; color:#a5b4fc;"><i class="fab fa-facebook"></i></a>
         </div>
       </div>
     </div>
   </section>
 
-  <a href="#" class="admin-btn" onclick="alert('Admin Panel - admin123')">👨‍💼 Admin</a>
+  <a href="#" onclick="openAdmin()" class="admin-btn">👨‍💼 Admin Panel</a>
 
   <script>
-    // Progress Bar Animation
-    function animateProgressBars() {
-      const progressBars = document.querySelectorAll('.progress');
-      progressBars.forEach(bar => {
-        const targetWidth = bar.getAttribute('data-width');
-        bar.style.width = targetWidth + '%';
+    const SUPABASE_URL = 'https://xcftjlugfmxcdvdjdxvq.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjZnRqbHVnZm14Y2R2ZGpkeHZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNTQwMTMsImV4cCI6MjA5MzczMDAxM30.sBPcAtSoX2nQ4iFuDe4k9BleIm3td-ZSHyHXg7R7vIo';
+
+    let skillsData = [];
+    let projectsData = [];
+
+    async function loadData() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/profile?select=*`, {
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+        });
+        const data = await res.json();
+        if (data.length > 0) {
+          document.getElementById('aboutText').innerHTML = data[0].about_text || "Мэдээлэл байхгүй байна.";
+          if (data[0].skills) skillsData = data[0].skills;
+          if (data[0].projects) projectsData = data[0].projects;
+        }
+      } catch(e) { console.log(e); }
+      renderSkills();
+      renderProjects();
+    }
+
+    function renderSkills() {
+      const container = document.getElementById('skillsContainer');
+      container.innerHTML = '';
+      skillsData.forEach(skill => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <strong>${skill.name}</strong>
+          <div class="progress-bar"><div class="progress" style="width: ${skill.percent}%"></div></div>
+          <small style="float:right; margin-top:5px;">${skill.percent}%</small>
+        `;
+        container.appendChild(div);
       });
     }
 
-    const skillsSection = document.getElementById('skills');
-    let animated = false;
+    function renderProjects() {
+      const container = document.getElementById('projectsContainer');
+      container.innerHTML = '';
+      projectsData.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<h3>${p.title}</h3><p>${p.description}</p>`;
+        container.appendChild(div);
+      });
+    }
 
-    window.addEventListener('scroll', () => {
-      if (animated) return;
-      const rect = skillsSection.getBoundingClientRect();
-      if (rect.top <= window.innerHeight * 0.75) {
-        animateProgressBars();
-        animated = true;
+    function openAdmin() {
+      const pass = prompt("Нууц үгээ оруулна уу:");
+      if (pass === "admin123") {
+        alert("✅ Admin Panel нээгдлээ!\n\nAbout, Skills, Projects хэсгүүдийг өөрчилж болно.");
+        // Бүрэн Admin Panel хүсвэл хэлээрэй
+      } else {
+        alert("❌ Буруу нууц үг!");
       }
-    });
+    }
 
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const rect = skillsSection.getBoundingClientRect();
-        if (rect.top <= window.innerHeight * 0.75) {
-          animateProgressBars();
-          animated = true;
-        }
-      }, 800);
-    });
+    window.onload = loadData;
   </script>
 </body>
 </html>
